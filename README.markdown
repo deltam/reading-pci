@@ -1,6 +1,6 @@
 # reading-pci
 
-FIXME: write description
+Clojureで「集合知プログラミング（Programming Collective Intelligence)」を写経する
 
 ## Usage
 
