@@ -51,12 +51,14 @@
 (defn initialize-user-dict
   ([tag count]
      (zipmap
-      (for [;; popularな投稿をcount番目まで取得
-            p1 (take count (get-popular tag)),
-            ;; このリンクを投稿したすべてのユーザを取得
-            p2 (get-urlposts (p1 :href))]
-        (p2 :user))
-      (repeat nil)))
+      (distinct
+       (for [;; popularな投稿をcount番目まで取得
+             p1 (take count (get-popular tag)),
+             ;; このリンクを投稿したすべてのユーザを取得
+             p2 (get-urlposts (p1 :href))
+             :when (not= "" (p2 :user))]
+         (p2 :user)))
+      (repeat 0.0)))
   ([tag]
      (initialize-user-dict tag 5)))
 
